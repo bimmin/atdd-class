@@ -1,0 +1,70 @@
+{
+	"info": {
+		"_postman_id": "944b4b63-74dd-4edc-8d1d-c110d1588b68",
+		"name": "shoping_cart_success",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "search product",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "73601624-28e7-4d51-82dd-d499e92905cf",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Total is 1\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.total).to.eql(1);",
+							"});",
+							"",
+							"pm.test(\"Product id is 1\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.products[0].id).to.eql(1);",
+							"});",
+							"",
+							"pm.test(\"Product name is 43 Piece Dinner Set\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.products[0].product_name).to.eql(\"43 Piece Dinner Set\");",
+							"});",
+							"",
+							"pm.test(\"Product price is 10.00\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.products[0].product_price).to.eql(10.00);",
+							"});",
+							"",
+							"pm.test(\"Product image is /43-piece-dinner-set.png\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.products[0].product_image).to.eql(\"/43-piece-dinner-set.png\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:3000/api/v1/product",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"product"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
